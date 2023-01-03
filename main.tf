@@ -97,7 +97,7 @@ resource "azurerm_virtual_machine" "main" {
         public_key     = file("~/.ssh/unused/id_rsa.pub")
     }
   }
-}
+
 
 resource "azurerm_managed_disk" "main" {
   name                 = "${var.prefix}-data.vhd"
