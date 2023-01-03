@@ -80,26 +80,21 @@ resource "azurerm_virtual_machine" "main" {
     disk_size_gb      = "200"
   }
 
- # os_profile {
- #   computer_name  = "hostname"
- #   admin_username = var.linux_admin_username
- # }
+  os_profile {
+    computer_name  = "hostname"
+    admin_username = var.linux_admin_username
+  }
 
-#  os_profile_linux_config {
-#    disable_password_authentication = true
-#    ssh_keys {
-#      path     = "/home/voxsteel/.ssh/authorized_keys"
-#      key_data = var.ssh_public_key
-#    }
-  computer_name  = "${var.prefix}-vm"
-  admin_username = var.linux_admin_username
-  disable_password_authentication = true
+  os_profile_linux_config {
+    disable_password_authentication = true
   
-  admin_ssh_key {
-        username       = var.linux_admin_username
-        public_key     = file("~/.ssh/unused/id_rsa.pub")
+    ssh_keys {
+      path     = "/home/voxsteel/.ssh/authorized_keys"
+      key_data = var.ssh_public_key
     }
   }
+}
+
 
 
 resource "azurerm_managed_disk" "main" {
