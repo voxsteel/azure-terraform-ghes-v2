@@ -1,9 +1,10 @@
-
+# Create a resource group
 resource "azurerm_resource_group" "main" {
   name     = "${var.prefix}-resources"
   location = var.location
 }
 
+# Create a network
 resource "azurerm_virtual_network" "main" {
   name                = "${var.prefix}-network"
   address_space       = ["10.0.0.0/16"]
@@ -11,6 +12,7 @@ resource "azurerm_virtual_network" "main" {
   resource_group_name = azurerm_resource_group.main.name
 }
 
+# Create a subnet
 resource "azurerm_subnet" "internal" {
   name                 = "${var.prefix}-subnet"
   resource_group_name  = azurerm_resource_group.main.name
@@ -18,6 +20,7 @@ resource "azurerm_subnet" "internal" {
   address_prefixes       = ["10.0.1.0/24"]
 }
 
+# Create public IP
 resource "azurerm_public_ip" "main" {
   name                = "${var.prefix}-public-ip"
   location            = azurerm_resource_group.main.location
@@ -25,6 +28,7 @@ resource "azurerm_public_ip" "main" {
   allocation_method   = "Static"
 }
 
+# Create network Interface
 resource "azurerm_network_interface" "main" {
   name                = "${var.prefix}-nic"
   location            = azurerm_resource_group.main.location
@@ -38,6 +42,7 @@ resource "azurerm_network_interface" "main" {
   }
 }
 
+# Create security group and rules to open inbound ports
 resource "azurerm_network_security_group" "main" {
   name                = "${var.prefix}-security-group"
   location            = azurerm_resource_group.main.location
