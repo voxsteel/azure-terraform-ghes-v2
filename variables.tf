@@ -8,9 +8,10 @@ variable "location" {
   default = "eastus"
 }
 
+# Using latest tag will deploy the latest version available in Azure, but you can use specific version, e.g. 3.7.1
 variable "ghes-version" {
   type    = string
-  default = "3.7.1"
+  default = "latest"
 }
 
 variable "linux_admin_username" {
