@@ -42,7 +42,7 @@ resource "azurerm_network_interface" "main" {
   }
 }
 
-# Create security group and rules to open inbound ports
+# Create security group and rules to open needed ports
 resource "azurerm_network_security_group" "main" {
   name                = "${var.prefix}-security-group"
   location            = azurerm_resource_group.main.location
@@ -63,6 +63,7 @@ resource "azurerm_network_security_rule" "main" {
   network_security_group_name = azurerm_network_security_group.main.name
 }
 
+# Create Virtual machine 
 resource "azurerm_virtual_machine" "main" {
   name                  = "${var.prefix}-vm"
   location              = azurerm_resource_group.main.location
@@ -76,7 +77,7 @@ resource "azurerm_virtual_machine" "main" {
     sku       = "GitHub-Enterprise"
     version   = var.ghes-version
   }
-
+# Create OS Disk
   storage_os_disk {
     name              = "${var.prefix}-os-storage"
     caching           = "ReadWrite"
@@ -92,7 +93,8 @@ resource "azurerm_virtual_machine" "main" {
 
   os_profile_linux_config {
     disable_password_authentication = true
-  
+
+# Update the path to your own public key  
     ssh_keys {
       path     = "/home/voxsteel/.ssh/authorized_keys"
       key_data = file("~/.ssh/unused/id_rsa.pub")
@@ -101,8 +103,7 @@ resource "azurerm_virtual_machine" "main" {
   }
 }
 
-
-
+# Create the 2nd HDD needed as one of the requirements
 resource "azurerm_managed_disk" "main" {
   name                 = "${var.prefix}-data-disk"
   location             = azurerm_resource_group.main.location
