@@ -35,3 +35,7 @@ VM-admin = "voxsteel"
 ### Destroy Virtual Machine:
 
 To destroy resources (when you finish troubleshooting): `terraform destroy` and confirm with `yes` when ask `Enter a value:`
+
+
+### Other resources
+https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine
