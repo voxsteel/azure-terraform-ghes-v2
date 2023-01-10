@@ -23,16 +23,16 @@ All image versions of GitHub Enterprise available in Azure can be found using th
 
 Run commands:
 
-1. `terraform init`
-2. `terraform plan`
-3. `terraform apply -auto-approve`
+1. `terraform init` - The terraform init command initializes a working directory containing Terraform configuration files. This is the first command that should be run after writing a new Terraform configuration or cloning an existing one from version control. It is safe to run this command multiple times.
+2. `terraform plan` - The terraform plan command creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure
+3. `terraform apply` - The `terraform apply` command executes the actions proposed in a Terraform plan.
 
 After the `terraform apply` it will finish with the outputs (as example):
 
 ```
 Outputs:
 
-VM-PUBLIC-IP = "172.174.80.179"
+VM-PUBLIC-IP = "20.120.24.233"
 VM-admin = "voxsteel"
 ```
 
