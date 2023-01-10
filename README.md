@@ -13,7 +13,7 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 
 ### Create Virtual Machine:
 
-Edit [variables.tf](https://github.com/voxsteel/azure-terraform-ghes-v2/blob/main/variables.tf) and replace `voxsteel` with your GitHub @handle.
+Edit [variables.tf](https://github.com/voxsteel/azure-terraform-ghes-v2/blob/main/variables.tf) and replace `voxsteel` with your GitHub @handle. Or any other prefix, it has to be unique.
 
 Edit [main.tf](https://github.com/voxsteel/azure-terraform-ghes-v2/blob/main/main.tf) and update the path with the location of your RSA key `key_data = file("~/.ssh/unused/id_rsa.pub")`
 
