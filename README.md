@@ -3,7 +3,7 @@
 
 This procedure will create a virtual machine in Azure with GitHub Enterprise Server installed automatically using TerraForm. All the needed resources will be created without interaction.
 
-## [](https://ghe.io/lgluisgaspar/ghes-procedures/tree/main/terraform/azure/vm-syslog-ng#instructions)Instructions
+## Instructions
 
 NOTE: This procedure assumes you have already [azure cli](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-macos) and [terraform](https://developer.hashicorp.com/terraform/downloads) installed and configured with GitHub Azure account. Also it expects there is a RSA public key. If you dont have one create one quickly with the following command:
 
@@ -16,6 +16,10 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 Edit [variables.tf](https://github.com/voxsteel/azure-terraform-ghes-v2/blob/main/variables.tf) and replace `voxsteel` with your GitHub @handle.
 
 Edit [main.tf](https://github.com/voxsteel/azure-terraform-ghes-v2/blob/main/main.tf) and update the path with the location of your RSA key `key_data = file("~/.ssh/unused/id_rsa.pub")`
+
+All image versions of GitHub Enterprise available in Azure can be found using this command:
+
+`az vm image list --all -f GitHub-Enterprise | grep '"urn":' | sort -V`
 
 Run commands:
 
