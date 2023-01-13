@@ -96,7 +96,7 @@ resource "azurerm_virtual_machine" "main" {
 
 # Update the path to your own public key  
     ssh_keys {
-      path     = "/home/voxsteel/.ssh/authorized_keys"
+      path     = "/home/${var.linux_admin_username}/.ssh/authorized_keys"
       key_data = file("~/.ssh/unused/id_rsa.pub")
       #      key_data = var.ssh_public_key
     }
