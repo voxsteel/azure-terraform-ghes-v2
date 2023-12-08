@@ -1,6 +1,6 @@
 variable "prefix" {
   type    = string
-  default = "voxsteelTF"
+  default = "voxsteelTFprimary"
 }
 
 variable "location" {
